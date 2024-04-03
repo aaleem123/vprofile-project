@@ -1,12 +1,12 @@
-FROM maven:3.6.3-jdk-11 AS build
+FROM openjdk:11 AS build
 LABEL "Project"="vprofile"
-RUN apt-get update -y
+RUN apt update && install maven -y
 RUN git clone https://github.com/aaleem123/vprofile-project.git
-RUN cd vprofile-project && git checkout docker 
-RUN mvn clean package
+RUN cd vprofile-project && git checkout docker && mvn install 
 
-FROM tomcat 
-RUN rm -rf /usr/local/tomcat/webapps/ROOT*
+FROM tomcat:9-jre11
+RUN rm -rf /usr/local/tomcat/webapps/*
 COPY --from=build vprofile-project/target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
+
 EXPOSE 8080
 CMD ["catalina.sh", "run"]
