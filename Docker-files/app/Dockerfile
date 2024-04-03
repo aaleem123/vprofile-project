@@ -1,6 +1,6 @@
 FROM openjdk:11 AS build
 LABEL "Project"="vprofile"
-RUN apt update && install maven -y
+RUN apt update && apt install maven -y
 RUN git clone https://github.com/aaleem123/vprofile-project.git
 RUN cd vprofile-project && git checkout docker && mvn install 
 
