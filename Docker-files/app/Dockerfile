@@ -11,7 +11,7 @@ RUN git clone https://github.com/aaleem123/vprofile-project.git
 WORKDIR /app/vprofile-project
 
 # Checkout the 'docker' branch and run Maven clean install with debug logging
-RUN git checkout docker && mvn clean install --debug
+RUN git checkout docker && mvn install
 
 # Use Tomcat as the deployment stage
 FROM tomcat:9-jre11
