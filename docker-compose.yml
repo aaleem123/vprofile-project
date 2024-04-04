@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 services:
 
   vprodb:
@@ -7,7 +7,7 @@ services:
     image: aaleem1993/vprodb
     container_name: vprodb
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
       - myvolumedb:/var/lib/mysql
     environment:
@@ -16,12 +16,12 @@ services:
   vprocache01:
     image: memcached
     ports:
-      - "11211:11211"
+      - 11211:11211
 
   vpromq01:
     image: rabbitmq
     ports:
-      - "15672:15672"
+      - 15672:15672
     environment:
       - rabbitmq.username=guest
       - rabbitmq.password=guest
@@ -32,7 +32,7 @@ services:
     image: aaleem1993/vproapp
     container_name: vproapp
     ports:
-      - "8080:8080"
+      - 8080:8080
     volumes:
       - vproappdata:/usr/local/tomcat/webapps
 
